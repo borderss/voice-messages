@@ -1,0 +1,165 @@
+{
+  "name": "voice-messages",
+  "displayName": "Voice Messages",
+  "description": "Record and attach voice messages as comments in your code. Perfect for code reviews, documentation, and team collaboration.",
+  "version": "1.0.0",
+  "publisher": "snowyball",
+  "author": {
+    "name": "Alberts Liepiņš"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snowyball/voice-messages"
+  },
+  "bugs": {
+    "url": "https://github.com/snowyball/voice-messages/issues"
+  },
+  "homepage": "https://github.com/snowyball/voice-messages#readme",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "keywords": [
+    "voice",
+    "audio",
+    "recording",
+    "comments",
+    "code review",
+    "documentation",
+    "collaboration",
+    "ffmpeg"
+  ],
+  "engines": {
+    "vscode": "^1.106.1"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "voiceMessagesPlayer",
+          "name": "Voice Player",
+          "type": "webview",
+          "visibility": "collapsed"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "voice-messages.startRecording",
+        "title": "Voice Messages: Start Recording",
+        "icon": "$(mic)"
+      },
+      {
+        "command": "voice-messages.stopRecording",
+        "title": "Voice Messages: Stop Recording",
+        "icon": "$(primitive-square)"
+      },
+      {
+        "command": "voice-messages.cancelRecording",
+        "title": "Voice Messages: Cancel Recording"
+      },
+      {
+        "command": "voice-messages.toggleRecording",
+        "title": "Voice Messages: Toggle Recording"
+      },
+      {
+        "command": "voice-messages.loadMessage",
+        "title": "Voice Messages: Play Message",
+        "icon": "$(play)"
+      },
+      {
+        "command": "voice-messages.deleteMessage",
+        "title": "Voice Messages: Delete Message",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "voice-messages.selectAudioDevice",
+        "title": "Voice Messages: Select Audio Device"
+      },
+      {
+        "command": "voice-messages.cleanupOrphanedMarker",
+        "title": "Voice Messages: Remove Orphaned Marker"
+      },
+      {
+        "command": "voice-messages.cleanupOrphanedAudioFiles",
+        "title": "Voice Messages: Delete Unreferenced Audio Files"
+      }
+    ],
+    "configuration": {
+      "title": "Voice Messages",
+      "properties": {
+        "voice-messages.audioDevice": {
+          "type": "string",
+          "default": "auto",
+          "description": "Audio input device to use for recording. Set to 'auto' to use system default."
+        },
+        "voice-messages.audioCodec": {
+          "type": "string",
+          "default": "libmp3lame",
+          "enum": [
+            "libmp3lame",
+            "aac",
+            "libvorbis",
+            "flac"
+          ],
+          "description": "Audio codec to use for recording. MP3 (libmp3lame) recommended for best compatibility."
+        },
+        "voice-messages.audioBitrate": {
+          "type": "string",
+          "default": "64k",
+          "enum": [
+            "32k",
+            "48k",
+            "64k",
+            "96k",
+            "128k",
+            "192k"
+          ],
+          "description": "Audio bitrate for recording quality. 64k is recommended for voice."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "voice-messages.toggleRecording",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.106.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.46.3",
+    "eslint": "^9.39.1",
+    "esbuild": "^0.27.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
