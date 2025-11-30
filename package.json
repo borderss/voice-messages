@@ -1,7 +1,7 @@
 {
   "name": "voice-messages",
   "displayName": "Voice Messages",
-  "description": "Record and attach voice messages as comments in your code. Perfect for code reviews, documentation, and team collaboration.",
+  "description": "Record voice comments to your code. Perfect for code reviews, documentation, and team collaboration.",
   "version": "1.0.0",
   "publisher": "snowyball",
   "author": {
@@ -10,12 +10,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/snowyball/voice-messages"
+    "url": "https://github.com/borderss/voice-messages"
   },
   "bugs": {
-    "url": "https://github.com/snowyball/voice-messages/issues"
+    "url": "https://github.com/borderss/voice-messages/issues"
   },
-  "homepage": "https://github.com/snowyball/voice-messages#readme",
+  "homepage": "https://github.com/borderss/voice-messages#readme",
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#1e1e1e",
@@ -26,10 +26,14 @@
     "audio",
     "recording",
     "comments",
+    "messages",
     "code review",
     "documentation",
     "collaboration",
-    "ffmpeg"
+    "ffmpeg",
+    "offline",
+    "local",
+    "decentralized"
   ],
   "engines": {
     "vscode": "^1.106.1"
