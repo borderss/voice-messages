@@ -2,7 +2,7 @@
   "name": "voice-messages",
   "displayName": "Voice Messages",
   "description": "Record voice comments to your code. Perfect for code reviews, documentation, and team collaboration.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "snowyball",
   "author": {
     "name": "Alberts Liepiņš"
